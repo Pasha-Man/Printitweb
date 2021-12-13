@@ -65,9 +65,9 @@ const ChatRoom = () => {
             sendMessage={handlerSendMessage}
           />
         </Grid>
-        <Grid className={classes.item} item xs={3}>
+        {/* <Grid className={classes.item} item xs={3}>
           <UserInfo {...user} signOut={signOut} />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Page>
   );

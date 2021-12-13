@@ -6,6 +6,7 @@ import "./style.css";
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from 'axios';
 import db from "./config"
+import Order from "./Order";
 class Current extends React.Component {
   constructor(props){
     super(props)
@@ -92,7 +93,7 @@ class Current extends React.Component {
                     </div>
                     <div className="col-md-4">
                       <div className="print-inner">
-                        <span>1</span>
+                        <span>{Number(Order.pending)}</span>
                         <p className="boldspan">Order Completed</p>
                       </div>
                     </div>
@@ -137,11 +138,11 @@ class Current extends React.Component {
                           }}
                         >
                           <i class="fas fa-copy fa-8x"></i>
-                          <button
+                          {/* <button
                           onClick={() => this.printingservices()}
                           >
                             press
-                          </button>
+                          </button> */}
                           {/* <img src={document} alt="document" /> */}
                         </div>
                       </div>

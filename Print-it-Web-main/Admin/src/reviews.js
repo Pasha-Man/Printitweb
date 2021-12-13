@@ -11,24 +11,26 @@ function Reviews() {
    useEffect(() => {
      const getData = async () => {
        if (IsLoading) {
-         const snapshot = await db.collection("Customer").get();
+         const snapshot = await db.collection("customers").get();
          snapshot.forEach((doc) => {
-           const shopData = {
+           const customer = {
              id: doc.id,
-             name: doc.data().name,
+             name: doc.data().username,
              address: doc.data().address,
              pName: doc.data().pName,
              joinedDate: doc.data().joinedDate,
              review: doc.data().review
            };
            setData((props) => {
-             return [...props, shopData];
+             return [...props, customer];
            });
 
-           console.log("Data is", shopData);
+           console.log("Data is", customer);
          });
          setIsLoading(false);
        }
+      
+       
      };
      if (IsLoading) {
        getData();
@@ -77,7 +79,7 @@ function Reviews() {
                       <td>{data.name}</td>
                       <td>{data.review}</td>
                       <td>{data.joinedDate.toDate().toDateString()}</td>
-                      <td>{data.pName}</td>
+                      <td>{data.shopname}</td>
                       <td>
                         <button className="blue-button"> Details</button>
                       </td>

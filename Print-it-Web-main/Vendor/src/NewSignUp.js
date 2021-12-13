@@ -8,10 +8,10 @@ function NewSignUp() {
   const [isUser, setIsUser] = useState();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [passwordAgain, setPasswordAgain] = useState("");
+  // const [passwordAgain, setPasswordAgain] = useState("");
   const [number, setNumber] = useState("");
-  const [long, setlong] = useState("");
-  const [lat, setlat] = useState("");
+  const [long, setlong] = useState(0);
+  const [lat, setlat] = useState(0);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData();
@@ -20,11 +20,11 @@ function NewSignUp() {
       email: data.get("email"),
       password: data.get("password"),
       number: data.get("number"),
-      passwordAgain: data.get("passwordAgain"),
+      // passwordAgain: data.get("passwordAgain"),
     });
     data.append("email", email);
     data.append("password", password);
-    data.append("passwordAgain", passwordAgain);
+    // data.append("passwordAgain", passwordAgain);
     data.append("number", number);
 
     firebase
@@ -40,7 +40,9 @@ function NewSignUp() {
           password:password,
           number:number,
           longitute: long, 
-          latitute: lat
+          latitute: lat,
+          availablityStatus: false,
+          uid: user.uid
         })
       })
       .catch((error) => {
@@ -79,14 +81,14 @@ function NewSignUp() {
             size="70"
             onChange={(event) => setPassword(event.target.value)}
           ></input>
-          <p style={style.bottomHolder}>Confirm Password</p>
+          {/* <p style={style.bottomHolder}>Confirm Password</p>
           <input
             style={style.feilds}
             type="password"
             placeholder="Enter your password "
             size="70"
             // onChange={(event) => setPasswordAgain(event.target.value)}
-          ></input>
+          ></input> */}
           <p style={style.topHolder}>Phone Number</p>
           <input
             style={style.feilds}

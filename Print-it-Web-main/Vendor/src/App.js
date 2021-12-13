@@ -49,6 +49,7 @@ function App() {
         <Route path="/NewSignIn" component={NewSignIn} exact />
         <Route path="/NewSignUp" component={NewSignUp} exact />
         <Route path="/home" component={Home} exact />
+        {/* <Route path="/Chat/home" component={Homee} exact /> */}
         <Route path="/CurrentOrder" component={Current} exact />
         <Route path="/Wallet" component={Wallet} exact />
         <Route path="/Order" component={Order} exact />

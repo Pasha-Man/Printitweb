@@ -15,9 +15,11 @@
     "bootstrap-table": "^1.18.3",
     "firebase": "^8.3.0",
     "install": "^0.13.0",
+    "moment": "^2.29.1",
     "npm": "^7.9.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
+    "react-moment": "^1.1.1",
     "react-chartjs-2": "^4.0.0",
     "react-charts": "^2.0.0-beta.7",
     "react-dom": "^17.0.2",
@@ -25,6 +27,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "recharts": "^2.1.6",
     "styled-components": "^5.2.3",
     "styled-reset": "^4.3.4",
     "sweetalert": "^2.1.2",
@@ -37,7 +40,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [

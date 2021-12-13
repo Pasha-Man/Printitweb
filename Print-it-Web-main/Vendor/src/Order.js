@@ -85,7 +85,7 @@ class Order extends React.Component{
                   borderRadius: "8px",
                   padding: "20px 20px",
                   width: "50%",
-                  marginLeft: "295px",
+                  marginLeft: "270px",
                 }}
               >
                 <h4>check current order</h4>
@@ -111,7 +111,7 @@ class Order extends React.Component{
                   borderRadius: "8px",
                   padding: "20px 20px",
                   width: "50%",
-                  marginLeft: "300px",
+                  marginLeft: "268px",
                 }}
               >
                 <h4> See the details of orders</h4>
@@ -137,7 +137,7 @@ class Order extends React.Component{
                   borderRadius: "8px",
                   padding: "20px 20px",
                   width: "50%",
-                  marginLeft: "270px",
+                  marginLeft: "268px",
                 }}>
                 <h4> See the details of Cancelled orders</h4>
               </div>

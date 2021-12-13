@@ -821,11 +821,12 @@ box-shadow:  0px 1px 10px 0px #d4d4d4;
      .service-h3{
             background: #ff976d;
     color: white;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
+    margin-left: 100px;
      }
     .service-h31{
             background: #b71c1c;
@@ -2190,6 +2191,7 @@ transition: transform 80ms ease-in;
   color:white;
   font-size:large;
   font-weight:bold;
+  width: 190px;
   padding:20px;
   border:none;
 
@@ -2199,7 +2201,9 @@ transition: transform 80ms ease-in;
   color:white;
   font-size:large;
   font-weight:bold;
+  /* padding:15px 40px 15px 30px; */
   padding:20px;
+  width: 190px;
   border:none;
 
 }
@@ -2209,6 +2213,7 @@ transition: transform 80ms ease-in;
   font-size:large;
   font-weight:bold;
   padding:20px;
+  width: 190px;
   border:none;
 
 }
@@ -2222,4 +2227,14 @@ th{
   background-color:#ff976d;
   border:none;
   color: white;
+}
+.availButton{
+  
+  border:none;
+  color: white;
+  padding: 0px 30px;
+  margin-left: 150px;
+  font-size:large;
+  font-weight:bold;
+  border-radius: 5px;
 }

@@ -3,27 +3,30 @@ import Header from "./header";
 import "./style.css";
 import Table from "react-bootstrap/Table";
 import firebase, { db } from "./config";
+import moment from "moment";
 function Customer() {
+  var moment = require("moment");
 
   const[IsLoading, setIsLoading] = useState(true);
   const [Data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
       if (IsLoading) {
-        const snapshot = await db.collection("Customer").get();
+        const snapshot = await db.collection("customers").get();
         snapshot.forEach((doc) => {
-          const shopData = {
+          const customer = {
             id: doc.id,
-            name: doc.data().name,
-            address: doc.data().address,
-            number: doc.data().number,
+            name: doc.data().username,
+            address: doc.data().location,
+            number: doc.data().phonenumber,
             joinedDate: doc.data().joinedDate,
           };
           setData((props) => {
-            return [...props, shopData];
+            return [...props, customer];
           });
 
-          console.log("Data is", shopData);
+          console.log("Data is", customer);
+          console.log("Date is", customer.phonenumber);
         });
         setIsLoading(false);
       }
@@ -112,8 +115,9 @@ function Customer() {
                 {Data.map((data) => {
                   return (
                     <tr>
-                      <td>{data.name}</td>
+                      <td>{data.name}</td>  
                       <td>{data.joinedDate.toDate().toDateString()}</td>
+                      {/* <td>{ data.joinedDate.moment().toString()}</td> */}
                       <td>{data.number}</td>
                       <td>{data.address}</td>
                       <td>

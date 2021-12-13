@@ -3,8 +3,9 @@ import Header from "./header";
 import NotificationPopup from "./NotificationPopup";
 import "./style.css";
 import firebase from "firebase";
-import {Bar, Line, Pie} from 'react-chartjs-2';
+// import {Bar, Line, Pie} from 'react-chartjs-2';
 import axios from 'axios';
+import Graph from "./Graph";
 class Home extends React.Component {
   constructor(props){
     super(props)
@@ -58,8 +59,8 @@ class Home extends React.Component {
               <h3 className="service-h3">Printer Shop 2</h3>
             </div>
           </div>
-          <div style={{ padding: "0 10%" }} className="mt-5 mb-5">
-            <h4 className="boldspan mb-5">Show how your business is going</h4>
+          <div style={{ padding: "0 5%" }} className="mt-5 mb-5">
+            <h4 className="boldspan mb-5 " >Show how your business is going</h4>
             <div className="row mt-3 mb-3">
               <div className="col-md-4">
                 <div className="print-inner">
@@ -84,10 +85,9 @@ class Home extends React.Component {
               </div>
             </div>
             <h4 className="boldspan mb-5 mt-5">
-              Show how your business is going
+              See how your business is going
             </h4>
-            <div id="chart_div">
-           </div>
+            <Graph />
           </div>
         </div>
       </div>

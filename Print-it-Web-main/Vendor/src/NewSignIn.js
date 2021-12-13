@@ -17,7 +17,6 @@ function NewSignIn() {
 
     data.append("email", email);
     data.append("password", password);
-
     console.log(data.get('email'));
 
 

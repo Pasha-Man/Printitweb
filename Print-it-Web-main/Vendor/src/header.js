@@ -31,8 +31,16 @@ function Header(props) {
             ></i>
             <h1>Print it</h1>
             <i
+              className="fa fa-comments-o fa-2x"
+              onClick={() => {
+                window.location.href = "/Chat";
+              }}
+            ></i>
+            <i
               className="fa fa-bell fa-2x"
-              onClick={() => {setPopUpActive(!popUpActive)}}
+              onClick={() => {
+                setPopUpActive(!popUpActive);
+              }}
             ></i>
           </div>
         </nav>
@@ -71,18 +79,18 @@ function Header(props) {
                   <i class="fa fa-cog fa-2x center-icon"></i>
                 </a>
               </li>
-              <li class="nav-item center-item" className={props.setting}>
+              {/* <li class="nav-item center-item" className={props.setting}>
                 <a class="nav-link" href="/chat">
                   <i class="fa fa-comments fa-2x center-icon"></i>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </nav>
           <div class="main-panel">
             <div class="content-wrap">
-              <div>
+              {/* <div>
                 <div class="col-md-12"></div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

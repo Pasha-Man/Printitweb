@@ -3,6 +3,7 @@ import Header from "./header";
 import "./style.css";
 import Table from "react-bootstrap/Table";
 import firebase, { db } from './config'
+import { lang } from "moment";
 
 function Shops () {
 
@@ -13,14 +14,17 @@ function Shops () {
 
     const getData = async () => {
       if (IsLoading) {
-        const snapshot = await db.collection('Shops').get()
+        const snapshot = await db.collection('printshops').get()
         snapshot.forEach(doc => {
-          const shopData = {
+          var shopData = {
             "id": doc.id,
             "name": doc.data().name,
-            "location": doc.data().location,
-            "number": doc.data().number,
-            "joinedDate": doc.data().joinedDate
+            // "location": doc.data().location,
+            "number": doc.data().phonenumber,
+            "startDate": doc.data().joinedDate,
+            "review":doc.data().feedback,
+            "long": doc.data().longitude,
+            "lat": doc.data().latitude
           }
           setData(props => {
             return [
@@ -28,7 +32,8 @@ function Shops () {
               shopData
             ]
           })
-
+              var location = doc.data().latitude.toString() + "," + doc.data().longitude.toString();
+              console.log(location);
           console.log("Data is", shopData)
         })
         setIsLoading(false)
@@ -124,12 +129,18 @@ function Shops () {
               </thead>
               <tbody>
                 {Data.map((data) => {
+                  console.log(data.latitude);
+                  console.log(data.longitude);
                   return (
                     <tr>
                       <td>{data.name}</td>
-                      <td>{data.joinedDate.toDate().toDateString()}</td>
+                      <td>{data.startDate.toDate().toDateString()}</td>
                       <td>{data.number}</td>
-                      <td>{data.location}</td>
+                      <td>
+                        {data.latitude +
+                          "," +
+                          data.longitude}
+                      </td>
                       <td>
                         <button className="blue-button"> Add</button>
                       </td>
