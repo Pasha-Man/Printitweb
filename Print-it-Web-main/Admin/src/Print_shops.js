@@ -15,26 +15,29 @@ function Shops () {
     const getData = async () => {
       if (IsLoading) {
         const snapshot = await db.collection('printshops').get()
+        // console.log(snapshot.docs.map(doc => doc.data()));
+        // var snapRef = db.collection("printshops");
+        // var query = snapRef.where('allowed', '==', "true");
+        // console.log("query is ", query);
+
         snapshot.forEach(doc => {
-          var shopData = {
-            "id": doc.id,
-            "name": doc.data().name,
-            // "location": doc.data().location,
-            "number": doc.data().phonenumber,
-            "startDate": doc.data().joinedDate,
-            "review":doc.data().feedback,
-            "long": doc.data().longitude,
-            "lat": doc.data().latitude
+          if(doc.data().allowed === false ){
+          // if(db.collection('printshops').where('allowed', '==', "false")  == "true"){
+          const shopData = {
+            id: doc.id,
+            name: doc.data().name,
+            number: doc.data().phonenumber,
+            startDate: doc.data().joinedDate,
+            review: doc.data().feedback,
+            long: doc.data().longitude,
+            lat: doc.data().latitude,
+          };
+          setData((props) => {
+            return [...props, shopData];
+          });
           }
-          setData(props => {
-            return [
-              ...props,
-              shopData
-            ]
-          })
-              var location = doc.data().latitude.toString() + "," + doc.data().longitude.toString();
-              console.log(location);
-          console.log("Data is", shopData)
+
+          // console.log("Data is", shopData)
         })
         setIsLoading(false)
       }
@@ -44,17 +47,35 @@ function Shops () {
     }
   }, [])
 
+// 
+  const handleAllow = (id) => {
+    db.collection('printshops').doc(id).update({
+      allowed: true
+      
 
+  }
+  )
+//   alert(`${id} has been added`);
+}
   const handleBlock = async (id) => {
     try {
-      await db.collection('Shops').doc(id).delete()
-      alert(`${id} has been deleted`)
+      await db.collection('printshops').doc(id).update({ allowed: false })
+      alert(`${id} has been blocked`);
     } catch (error) {
-      alert("Error while deleting block")
+      alert("Error while blocking block")
     }
 
 
   }
+  // const handleAllow = async (id) => {
+  //   try {
+  //     await db.collection("printshops").doc(id).update({allowed: true})
+  //   alert(`${id} has been allowed`);
+  // } catch (error) {
+  //   alert("Error while allowing");
+  // }
+  // }
+
 
 
   if (IsLoading) {
@@ -122,33 +143,32 @@ function Shops () {
                   <th>Shop Name</th>
                   <th>Joined on</th>
                   <th>Contact No.</th>
-                  <th>Location</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
                   <th>Add</th>
                   <th>Block</th>
                 </tr>
               </thead>
               <tbody>
-                {Data.map((data) => {
-                  console.log(data.latitude);
-                  console.log(data.longitude);
+                {Data.map((data, id) => {
+                  console.log("latitude is", data.lat);
+                  console.log("longitude is", data.long);
                   return (
                     <tr>
                       <td>{data.name}</td>
-                      <td>{data.startDate.toDate().toDateString()}</td>
+                      <td>{data?.startDate?.toDate().toDateString()}</td>
                       <td>{data.number}</td>
+                      <td>{data.lat}</td>
+                      <td>{data.long}</td>
                       <td>
-                        {data.latitude +
-                          "," +
-                          data.longitude}
-                      </td>
-                      <td>
-                        <button className="blue-button"> Add</button>
+                        <button className="blue-button" onClick={handleAllow(data.id)}> Add</button>
                       </td>
                       <td>
                         <button
                           className="blue-button"
                           onClick={(e) =>
-                            handleBlock(data.id).then(() =>
+                            handleBlock(data.id)
+                            .then(() =>
                               window.location.reload()
                             )
                           }

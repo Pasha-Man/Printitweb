@@ -28,7 +28,13 @@ function Header (props) {
                 onClick={handleSignOut}
               ></i>
               <h1>Print it</h1>
-              <i className="fa fa-bell fa-2x"></i>
+              <i
+                // className="fa fa-comments-o fa-2x"
+                onClick={() => {
+                  window.location.href = "/Chat";
+                }}
+              ></i>
+              {/* <i className="fa fa-bell fa-2x"></i> */}
             </div>
           </nav>
           <div
@@ -42,7 +48,7 @@ function Header (props) {
             <nav class="sidebar sidebar-offcanvas">
               <ul class="nav">
                 <li class="nav-item center-item" className={props.printer}>
-                  <a class="nav-link" href="/">
+                  <a class="nav-link" href="/home">
                     <i class="fa fa-home fa-2x center-icon"></i>
                   </a>
                 </li>

@@ -10,6 +10,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import firebase, { db } from './config'
 import { debounce } from "@material-ui/core";
+import ChatRoom from "./Chat";
 
 function App () {
 
@@ -45,6 +46,7 @@ function App () {
       <Route path="/home" component={Home} exact/>
       <Route path="/service" component={Service} />
       <Route path="/Customers" component={Customer} />
+      <Route path="/Chat" component={ChatRoom} />
       <Route path="/Print_shops" component={Shops} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/settings" component={Settings} />

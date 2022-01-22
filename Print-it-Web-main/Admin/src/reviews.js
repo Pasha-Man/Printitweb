@@ -5,37 +5,36 @@ import Table from "react-bootstrap/Table";
 import firebase, { db } from "./config";
 
 function Reviews() {
+  const [IsLoading, setIsLoading] = useState(true);
+  const [Data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      if (IsLoading) {
+        const snapshot = await db.collection("printshops").get();
+        snapshot.forEach((doc) => {
+          var shopData = {
+            id: doc.id,
+            name: doc.data().name,
+            // "location": doc.data().location,
+            number: doc.data().phonenumber,
+            startDate: doc.data().joinedDate,
+            review: doc.data().feedback,
+            long: doc.data().longitude,
+            lat: doc.data().latitude,
+          };
+          setData((props) => {
+            return [...props, shopData];
+          });
+          console.log("Data is", shopData);
+        });
+        setIsLoading(false);
+      }
+    };
+    if (IsLoading) {
+      getData();
+    }
+  }, []);
 
-   const [IsLoading, setIsLoading] = useState(true);
-   const [Data, setData] = useState([]);
-   useEffect(() => {
-     const getData = async () => {
-       if (IsLoading) {
-         const snapshot = await db.collection("customers").get();
-         snapshot.forEach((doc) => {
-           const customer = {
-             id: doc.id,
-             name: doc.data().username,
-             address: doc.data().address,
-             pName: doc.data().pName,
-             joinedDate: doc.data().joinedDate,
-             review: doc.data().review
-           };
-           setData((props) => {
-             return [...props, customer];
-           });
-
-           console.log("Data is", customer);
-         });
-         setIsLoading(false);
-       }
-      
-       
-     };
-     if (IsLoading) {
-       getData();
-     }
-   }, []);
 
    const handleBlock = async (id) => {
      try {
@@ -64,11 +63,11 @@ function Reviews() {
             <Table striped bordered hover size="sm">
               <thead>
                 <tr className="Top-Table-Bar">
-                  <th>Customer Name</th>
+                  {/* <th>Customer Name</th> */}
                   <th>Reviews</th>
                   <th>Date</th>
                   <th>Print Shop</th>
-                  <th>Details</th>
+                  {/* <th>Details</th> */}
                   <th>Delete</th>
                 </tr>
               </thead>
@@ -76,13 +75,13 @@ function Reviews() {
                 {Data.map((data) => {
                   return (
                     <tr>
+                      {/* <td>{data.username}</td> */}
+                      <td>{data.review +" Stars"}</td>
+                      <td>{data?.startDate?.toDate().toDateString()}</td>
                       <td>{data.name}</td>
-                      <td>{data.review}</td>
-                      <td>{data.joinedDate.toDate().toDateString()}</td>
-                      <td>{data.shopname}</td>
-                      <td>
+                      {/* <td>
                         <button className="blue-button"> Details</button>
-                      </td>
+                      </td> */}
                       <td>
                         <button
                           className="blue-button"
@@ -92,7 +91,7 @@ function Reviews() {
                             )
                           }
                         >
-                          Block
+                          Delete
                         </button>
                       </td>
                     </tr>

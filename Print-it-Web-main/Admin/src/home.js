@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./header";
 import  "./style.css";
+import Graph from "./Graph";
 function Home(){
 
   return (
@@ -24,7 +25,7 @@ function Home(){
             <div className="col-md-3" style={{ width: "40%" }}>
               <div className="print-inner">
                 <i className="fa fa-user-o"></i>
-                <span>40</span>
+                <span>4</span>
                 <p className="boldspan">Registered Customer</p>
               </div>
             </div>
@@ -32,13 +33,13 @@ function Home(){
             <div className="col-md-4" style={{ width: "40%" }}>
               <div className="print-inner">
                 <i className="fa fa-home"></i>
-                <span>5</span>
+                <span>6</span>
                 <p className="boldspan">Registered Print shops</p>
               </div>
             </div>
           </div>
           <h4 className="boldspan mb-5 mt-5">Track Orders</h4>
-          <div id="chart_div"></div>
+          <Graph/>
         </div>
       </div>
     </div>
